@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" ng-app="AuthenticationApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-signin-client_id" content="298688273736-d4fdj3a87pt86pmk50d79odvrtruvc0m.apps.googleusercontent.com">
+    <title>Authentication App</title>
+    <link rel="stylesheet" href="css/base.css"/>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+<body>
+
+
+<div ui-view></div>
+
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="app/app.js"></script>
+<script>
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail());
+    }
+
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+        });
+    }
+</script>
+</body>
+</html>
